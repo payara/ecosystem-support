@@ -1,0 +1,23 @@
+[[policy]]
+= Community GitHub Policy
+
+One of the key goals of Payara is to interact with our community of users and understand their needs and how are they engaging with the Payara Platform Ecosystem tools and plugins in general. To this effect, it is important to outline the guidelines that compose the Payara GitHub policy and how we handle user requests for bug fixes and enhancements.
+
+[[questions]]
+== Questions and General Advice
+
+For questions regarding about using these plugins and tools, visit the http://www.payara.org/forum[Payara Forum] and create a topic to discuss your inquiries in detail or consult our official product documentation.
+
+[[user-requests]]
+== User Requests
+
+Users can request assistance by raising an issue in the project’s issue tracker and follow the template to make sure that the report is comprehensive. There are two types of user requests:
+
+Bug Reports:: A defect or bug is present in an ecosystem tool/plugin. 
+Enhancements:: Propose additional functionality and improvements to an ecosystem tool/plugin.
+
+Engineers review user requests in detail and escalate issues to the Payara Platform Development team whenever possible. If your request is escalated to the you can expect that your requested fix or enhancement will be implemented in a future iteration of the corresponding ecosystem tool/plugin.
+
+When you raising a new request through the GitHub issue tracker, please follow the instructions detailed in the template to make sure that all details needed to provide proper support.
+
+IMPORTANT: We do not provide guarantees of when an escalated issue is to be implemented.

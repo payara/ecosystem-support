@@ -1,0 +1,46 @@
+[[ecosystem-support]]
+= Ecosystem Tools and Plugin Support
+
+This repository is used to track and handle support for the Payara Platform ecosystem tools and plugins and does not host code of any kind.
+For more information about how community support works for these tools read the corresponding file:///SUPPORT.adoc[support overview].
+
+[[supported-tools]]
+== Supported Tools/Plugins
+
+You may raise requests for the following categorized tools and plugins:
+
+[[ide-plugins]]
+=== IDE Plugins
+
+Integration plugins with several Java-supported IDEs:
+
+* https://github.com/payara/ecosystem-vscode-plugin[Virtual Studio Code Plugin]
+* https://github.com/payara/ecosystem-intellij-community-plugin[IntelliJ IDEA Community Plugin]
+* https://github.com/payara/ecosystem-eclipse-plugin[Eclipse IDE Plugin]
+
+NOTE: Although the Apache Netbeans IDE plugin is already archived since Payara Platform support is already native to the IDE, you may raise requests regarding plugin support if needed.
+
+[[build-tools]]
+=== Build Tools Integration
+
+Maven and Gradle integration plugins and tools.
+
+* https://github.com/payara/ecosystem-maven[Maven Tools]
+* https://github.com/payara/ecosystem-gradle[Gradle Tools]
+* https://github.com/payara/ecosystem-maven-regex-profile-activation-extension[Maven Regex Profile Activation Extension]
+
+[[connector-suites]]
+=== Connector Suites
+
+Connector suites for Payara Server and Micro integrations.
+
+* https://github.com/payara/ecosystem-security-connectors[Security Connectors]
+* https://github.com/payara/ecosystem-arquillian-connectors[Arquillian Connectors]
+* https://github.com/payara/Cloud-Connectors[Cloud Connectors]
+
+[[misc]]
+=== Miscelaneous
+
+Tools and plugins that do not fall under the previous categories.
+
+* https://github.com/payara/ecosystem-jaeger-tracing[Jaeger Tracer Implementation]
