@@ -14,7 +14,7 @@ You may raise requests for the following categorized tools and plugins:
 
 Integration plugins with several Java-supported IDEs:
 
-* https://github.com/payara/ecosystem-vscode-plugin[Virtual Studio Code Plugin]
+* https://github.com/payara/ecosystem-vscode-plugin[Visual Studio Code Plugin]
 * https://github.com/payara/ecosystem-intellij-community-plugin[IntelliJ IDEA Community Plugin]
 * https://github.com/payara/ecosystem-eclipse-plugin[Eclipse IDE Plugin]
 
