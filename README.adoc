@@ -2,7 +2,7 @@
 = Ecosystem Tools and Plugin Support
 
 This repository is used to track and handle support for the Payara Platform ecosystem tools and plugins and does not host code of any kind.
-For more information about how community support works for these tools read the corresponding file:///SUPPORT.adoc[support overview].
+For more information about how community support works for these tools read the corresponding link:SUPPORT.adoc[support overview].
 
 [[supported-tools]]
 == Supported Tools/Plugins
