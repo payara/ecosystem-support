@@ -16,8 +16,8 @@ Users can request assistance by raising an issue in the project’s issue tracke
 Bug Reports:: A defect or bug is present in an ecosystem tool/plugin. 
 Enhancements:: Propose additional functionality and improvements to an ecosystem tool/plugin.
 
-Engineers review user requests in detail and escalate issues to the Payara Platform Development team whenever possible. If your request is escalated to the you can expect that your requested fix or enhancement will be implemented in a future iteration of the corresponding ecosystem tool/plugin.
+Engineers review user requests in detail and escalate issues to the Payara Platform Development team whenever possible. If your request is escalated, you can expect that your requested fix or enhancement will be implemented in a future iteration of the corresponding ecosystem tool/plugin.
 
-When you raising a new request through the GitHub issue tracker, please follow the instructions detailed in the template to make sure that all details needed to provide proper support.
+When you raise a new request through the GitHub issue tracker, please follow the instructions detailed in the template to make sure that all details needed to provide proper support have been provided.
 
 IMPORTANT: We do not provide guarantees of when an escalated issue is to be implemented.

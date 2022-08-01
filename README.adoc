@@ -40,8 +40,12 @@ Connector suites for Payara Server and Micro integrations.
 * https://github.com/payara/Cloud-Connectors[Cloud Connectors]
 
 [[misc]]
-=== Miscelaneous
+=== Miscellaneous
 
 Tools and plugins that do not fall under the previous categories.
 
 * https://github.com/payara/ecosystem-jaeger-tracing[Jaeger Tracer Implementation]
+
+[[see-also]]
+== See Also
+* https://docs.payara.fish/community/docs/Technical%20Documentation/Ecosystem/Overview.html[Ecosystem Tools and Plugins Technical Documentation]
