@@ -16,10 +16,10 @@ Integration plugins with several Java-supported IDEs:
 
 * https://github.com/payara/ecosystem-vscode-plugin[Visual Studio Code Plugin]
 * https://github.com/payara/ecosystem-intellij-community-plugin[IntelliJ IDEA Community Plugin]
-* https://plugins.jetbrains.com/plugin/15114-payara-platform-tools[IntelliJ IDEA Enterprise Plugin]
+* https://plugins.jetbrains.com/plugin/15114-payara-platform-tools[IntelliJ IDEA Ultimate Plugin]
 * https://github.com/payara/ecosystem-eclipse-plugin[Eclipse IDE Plugin]
 
-NOTE: Although the Apache Netbeans IDE plugin is already archived since Payara Platform support is already native to the IDE, you may raise requests regarding plugin support if needed.
+NOTE: Payara Platform support is native to the Apache Netbeans IDE, however you can still raise issues and enhancement requests in ecosystem support.
 
 [[build-tools]]
 === Build Tools Integration
