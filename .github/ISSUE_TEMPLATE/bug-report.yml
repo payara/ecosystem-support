@@ -1,0 +1,74 @@
+name: Bug Report
+description: Report a bug or defect in the Payara Ecosystem
+title: "Bug Report: "
+labels: [ "Status: Open", "Type: Bug" ]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Brief Summary
+      description: |
+        Describe clearly and concisely a summary of the bug or defect.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-outcome
+    attributes:
+      label: Expected Outcome
+      description: |
+        Provide a detailed summary of the expected behaviour the relevant ecosystem tools SHOULD exhibit after executing the steps described below
+    validations:
+      required: true
+  - type: textarea
+    id: current-outcome
+    attributes:
+      label: Current Outcome
+      description: |
+        Provide a detailed summary of the actual behaviour the relevant ecosystem tools exhibit after executing the steps described below. Please put emphasis on any unwanted results.
+    validations:
+      required: true
+  - type: textarea
+    id: reproducer
+    attributes:
+      label: Reproducer
+      description: |
+        Please provide a simple to follow scenario on how to reproduce this issue on the relevant ecosystem tools.
+        A reproducer should follow the SSCCE rules: http://www.sscce.org/
+    validations:
+      required: true
+  - type: input
+    id: operating-system
+    attributes:
+      label: Operating System
+      description: What operating system and version are you using?
+      placeholder: Example - Windows 10 Pro
+    validations:
+      required: true
+  - type: input
+    id: jdk-version
+    attributes:
+      label: JDK Version
+      description: What JDK version and distribution are you using?
+      placeholder: Example - Zulu JDK 1.8.0_322
+    validations:
+      required: true
+  - type: dropdown
+    id: ecosystem-tool
+    validations:
+      required: true
+    attributes:
+      label: Ecosystem Tool
+      description: Which ecosystem tools is this bug present in?
+      multiple: true
+      options:
+        - Visual Studio IDE Plugin
+        - IntelliJ IDEA IDE Plugin
+        - Eclipse IDE Plugin
+        - Netbeans IDE Plugin
+        - Maven Tools
+        - Gradle Tools
+        - Security Connectors
+        - Arquillian Connectors
+        - Cloud Connectors
+        - Jaeger Tracer
+        - Maven Regex Extension
