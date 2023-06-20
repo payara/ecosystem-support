@@ -4,7 +4,7 @@ env:
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "${{ vars.GENERAL_JOB_FREQUENCY }}"
 
 jobs:
   abandoned-labeler:
@@ -23,7 +23,7 @@ jobs:
             const pendingLabel = "Status: Pending";
             const abandonedLabel = "Status: Abandoned";
             
-            const parsedDays = parseFloat(daysInterval);
+            const parsedDays = parseFloat("${{ env.daysInterval }}");
             const timeThreshold = parsedDays * 24 * 60 * 60 * 1000;
             
             // Query all GH issues that are pending and not closed
