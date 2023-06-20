@@ -23,7 +23,7 @@ jobs:
             const pendingLabel = "Status: Pending";
             const abandonedLabel = "Status: Abandoned";
             
-            const parsedDays = parseFloat(daysInterval);
+            const parsedDays = parseFloat("${{ daysInterval }}");
             const timeThreshold = parsedDays * 24 * 60 * 60 * 1000;
             
             // Query all GH issues that are pending and not closed
