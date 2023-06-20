@@ -23,7 +23,7 @@ jobs:
             const { owner, repo } = context.repo;
             const abandonedLabel = "Status: Abandoned";
             
-            const parsedDays = parsedFloat(daysInterval);
+            const parsedDays = parseFloat(daysInterval);
             const timeThreshold = parsedDays * 24 * 60 * 60 * 1000;
            
             const issuesResponse = await github.rest.issues.listForRepo({
