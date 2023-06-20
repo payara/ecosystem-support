@@ -1,6 +1,6 @@
 name: Monitor Abandoned Issues
 env:
-  cronSchedule: ${{vars.GENERAL_JOB_FREQUENCY}}
+  cronSchedule: ${{ vars.GENERAL_JOB_FREQUENCY }}
 
 on:
   schedule:
@@ -16,7 +16,7 @@ jobs:
       - name: Check for abandoned issues
         uses: actions/github-script@v6
         env:
-          daysInterval: ${{vars.MONITORING_INTERVAL_DAYS}}
+          daysInterval: ${{ vars.MONITORING_INTERVAL_DAYS }}
         with:
           script: |
             const { owner, repo } = context.repo;

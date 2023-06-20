@@ -13,7 +13,7 @@ jobs:
       - name: Get Team Members
         id: team-members
         env:
-          frontLine: ${{vars.FRONT_LINE_USERS_LIST}}
+          frontLine: ${{ vars.FRONT_LINE_USERS_LIST }}
         #Temporary solution - team member configuration should be dynamic
         run: echo "::set-output name=members::$frontLine"
       - name: Get Next Team Member
