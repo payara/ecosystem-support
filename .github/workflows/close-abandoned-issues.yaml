@@ -12,7 +12,7 @@ jobs:
     #Needs to be tested (maybe changed to a specific release)
     runs-on: ubuntu-latest
     permissions:
-      issues: read|write
+      issues: write
     steps:
       - name: Close the abandoned issue
         uses: actions/github-script@v6
