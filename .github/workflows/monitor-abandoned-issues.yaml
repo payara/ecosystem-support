@@ -1,14 +1,12 @@
 name: Monitor Abandoned Issues
-env:
-  cronSchedule: ${{ vars.GENERAL_JOB_FREQUENCY }}
 
 on:
   schedule:
-    - cron: "${{ vars.GENERAL_JOB_FREQUENCY }}"
+    - cron: "*/15 * * * *"
 
 jobs:
   abandoned-labeler:
-    #Needs to be tested (maybe changed to a specific release)
+    #TODO - Needs to be tested (maybe changed to a specific release)
     runs-on: ubuntu-latest
     permissions:
       issues: write
