@@ -7,6 +7,8 @@ jobs:
   auto-assign-label:
     #Needs to be tested (maybe changed to a specific release)
     runs-on: ubuntu-latest
+    permissions:
+      issues: read|write
     steps:
       - name: Get Team Members
         id: team-members
