@@ -16,7 +16,7 @@ jobs:
           frontLine: ${{ vars.FRONT_LINE_USERS_LIST }}
         #TODO - Temporary solution - team member configuration should be dynamic
         run: |
-          echo "::set-output name=members::${{ vars.FRONT_LINE_USERS_LIST }}"
+          echo "::set-output name=members::$frontLine"
       - name: Get Next Team Member
         id: next-member
         run: |          
