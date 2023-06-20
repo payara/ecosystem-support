@@ -5,7 +5,7 @@ on:
       - opened
 jobs:
   auto-assign-label:
-    #Needs to be tested (maybe changed to a specific release)
+    #TODO - Needs to be tested (maybe changed to a specific release)
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -14,11 +14,12 @@ jobs:
         id: team-members
         env:
           frontLine: ${{ vars.FRONT_LINE_USERS_LIST }}
-        #Temporary solution - team member configuration should be dynamic
-        run: echo "::set-output name=members::$frontLine"
+        #TODO - Temporary solution - team member configuration should be dynamic
+        run: |
+          echo "::set-output name=members::${{ vars.FRONT_LINE_USERS_LIST }}"
       - name: Get Next Team Member
         id: next-member
-        run: |
+        run: |          
           members=($(echo "${{ steps.team-members.outputs.members }}" | tr ',' '\n'))
           index=$(( (${GITHUB_RUN_NUMBER}-1) % ${#members[@]} ))
           next_member=${members[$index]}
