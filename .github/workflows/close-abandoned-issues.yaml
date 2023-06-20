@@ -5,7 +5,7 @@ env:
 
 on:
   schedule:
-    - cron: "$cronSchedule"
+    - cron: "*/5 * * * *"
 
 jobs:
   close-labeler:
