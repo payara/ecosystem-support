@@ -2,11 +2,10 @@ name: Monitor Abandoned Issues
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "0 */24 * * *"
 
 jobs:
   abandoned-labeler:
-    #TODO - Needs to be tested (maybe changed to a specific release)
     runs-on: ubuntu-latest
     permissions:
       issues: write

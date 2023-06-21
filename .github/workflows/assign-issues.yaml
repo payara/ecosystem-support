@@ -5,7 +5,6 @@ on:
       - opened
 jobs:
   auto-assign-label:
-    #TODO - Needs to be tested (maybe changed to a specific release)
     runs-on: ubuntu-latest
     permissions:
       issues: write
