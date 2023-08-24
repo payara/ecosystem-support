@@ -19,7 +19,7 @@ Integration plugins with several Java-supported IDEs:
 * https://plugins.jetbrains.com/plugin/15114-payara-platform-tools[IntelliJ IDEA Ultimate Plugin]
 * https://github.com/payara/ecosystem-eclipse-plugin[Eclipse IDE Plugin]
 
-NOTE: Payara Platform support is native to the Apache Netbeans IDE, however you can still raise issues and enhancement requests in ecosystem support.
+NOTE: Payara Platform support is native to the Apache Netbeans IDE, however, you can still raise issues and enhancement requests in ecosystem support.
 
 [[build-tools]]
 === Build Tools Integration
@@ -39,12 +39,18 @@ Connector suites for Payara Server and Micro integrations.
 * https://github.com/payara/ecosystem-arquillian-connectors[Arquillian Connectors]
 * https://github.com/payara/Cloud-Connectors[Cloud Connectors]
 
+[[jakarta-tooling]]
+=== Jakarta EE Tooling
+
+* https://github.com/payara/AdvisorTool[Jakarta EE Upgrade Advisor Tool]
+
 [[misc]]
 === Miscellaneous
 
 Tools and plugins that do not fall under the previous categories.
 
 * https://github.com/payara/ecosystem-jaeger-tracing[Jaeger Tracer Implementation]
+* https://github.com/payara/ecosystem-rest-ssl-configuration[JAX-RS Configuration Extension]
 
 [[see-also]]
 == See Also
