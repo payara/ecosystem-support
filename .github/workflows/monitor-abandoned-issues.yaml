@@ -29,10 +29,6 @@ jobs:
             await script({github, context, core});
   close-abandoned-issues:
     needs: check-environment
-    runs-on: ubuntu-latest
-    permissions:
-      issues: write
-    steps:
       - uses: actions/checkout@v3
       - name: Close abandoned issues
         uses: actions/github-script@v6
