@@ -44,6 +44,11 @@ Connector suites for Payara Server and Micro integrations.
 
 * https://github.com/payara/AdvisorTool[Jakarta EE Upgrade Advisor Tool]
 
+[[payara-starter]]
+=== Payara Starter
+
+* https://github.com/payara/ecosystem-starter[Payara Starter]
+
 [[misc]]
 === Miscellaneous
 
