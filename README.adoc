@@ -47,6 +47,8 @@ Connector suites for Payara Server and Micro integrations.
 [[payara-starter]]
 === Payara Starter
 
+The Payara Starter is an ecosystem tool/service, so please raise issues related to functional defects and user experience concerns. Outage and availability issues SHOULD NOT be reported.
+
 * https://github.com/payara/ecosystem-starter[Payara Starter]
 
 [[misc]]
