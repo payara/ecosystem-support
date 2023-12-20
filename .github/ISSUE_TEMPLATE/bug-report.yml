@@ -1,5 +1,5 @@
-name: Bug Report
-description: Report a bug or defect in the Payara Ecosystem
+name: Bug Report (Standard Ecosystem)
+description: Report a bug or defect in the listed Payara Platform Ecosystem tools
 title: "Bug Report: "
 labels: [ "Status: Open", "Type: Bug" ]
 body:
@@ -70,5 +70,7 @@ body:
         - Security Connectors
         - Arquillian Connectors
         - Cloud Connectors
+        - Jakarta EE Upgrade Advisor
         - Jaeger Tracer
         - Maven Regex Extension
+        - REST SSL Integration

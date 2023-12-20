@@ -51,5 +51,7 @@ body:
         - Security Connectors
         - Arquillian Connectors
         - Cloud Connectors
+        - Jakarta EE Upgrade Advisor
         - Jaeger Tracer
         - Maven Regex Extension
+        - REST SSL Integration

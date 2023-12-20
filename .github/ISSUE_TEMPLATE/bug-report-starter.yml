@@ -1,0 +1,37 @@
+name: Bug Report (Payara Starter)
+description: Report a bug or defect present in the Payara Starter website
+title: "Bug Report: "
+labels: [ "Status: Open", "Type: Bug" ]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Brief Summary
+      description: |
+        Describe clearly and concisely a summary of the bug or defect.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-outcome
+    attributes:
+      label: Expected Outcome
+      description: |
+        Provide a detailed summary of the expected behaviour for the Payara Starter website.
+    validations:
+      required: true
+  - type: textarea
+    id: current-outcome
+    attributes:
+      label: Current Outcome
+      description: |
+        Provide a detailed summary of the actual behaviour the Payara Starter website exhibits after executing the steps described below. Please put emphasis on any unwanted results.
+    validations:
+      required: true
+  - type: textarea
+    id: reproducer
+    attributes:
+      label: Steps to Reproduce
+      description: |
+        Please provide a detailed list of steps that will be followed to reproduce the error in question.
+    validations:
+      required: true
