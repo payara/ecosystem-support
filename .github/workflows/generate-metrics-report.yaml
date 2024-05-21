@@ -1,0 +1,117 @@
+name: Generate Monthly Metrics Report
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 13 1 * *'
+
+permissions:
+  issues: write
+  pull-requests: read
+
+jobs:
+  report-monthly-metrics:
+    name: Report Monthly Metrics
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get filter timeframe
+        shell: bash
+        run: |
+          # Calculate the first day of the previous month
+          first_day=$(date -d "last month" +%Y-%m-01)
+          # Calculate the last day of the previous month
+          last_day=$(date -d "$first_day +1 month -1 day" +%Y-%m-%d)
+          
+          # Set environment variables with the date range
+          echo "first_day=$first_day" >> "$GITHUB_ENV"
+          echo "last_day=$last_day" >> "$GITHUB_ENV"
+          echo "last_month=$first_day..$last_day" >> "$GITHUB_ENV"
+
+      - name: Run issue-metrics action, raised issues
+        id: issue-metrics-raised
+        uses: github/issue-metrics@v3
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LABELS_TO_MEASURE: 'Status: Open,Status: Accepted,Status: Pending'
+          SEARCH_QUERY: 'repo:${{ github.repository }} is:issue created:${{ env.last_month }}'
+
+      - name: Run issue-metrics action, closed issues
+        id: issue-metrics-closed
+        uses: github/issue-metrics@v3
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LABELS_TO_MEASURE: 'Status: Open,Status: Accepted,Status: Pending'
+          SEARCH_QUERY: 'repo:${{ github.repository }} is:issue closed:${{ env.last_month }}'
+
+      - name: Count Accepted Issues
+        id: count-accepted-issues
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const script = require('./.github/workflows/scripts/countEscalatedIssues.js');
+            return await script({github, context, core});
+
+      - name: Notify MS Teams channel Metrics Report
+        id: notify-report-ms-teams
+        uses: simbo/msteams-message-card-action@latest
+        with:
+          webhook: ${{ secrets.COMMUNITY_EVENTS_WEBHOOK_URL }}
+          title: Ecosystem Support Repository Metrics - ${{ env.last_month }}
+          message: |
+            <table>
+              <tr>
+                <th>Metric Average</th>
+                <th>Raised Issues</th>
+                <th>Closed Issues</th></tr>
+              <tr>
+                <td>Time to first response</td>
+                <td> ${{ fromJSON(steps.issue-metrics-raised.outputs.metrics).average_time_to_first_response }} </td>
+                <td> ${{ fromJSON(steps.issue-metrics-closed.outputs.metrics).average_time_to_first_response }} </td>
+              </tr>
+              <tr>
+                <td>Time to close</td>
+                <td> ${{ fromJSON(steps.issue-metrics-raised.outputs.metrics).average_time_to_close }} </td>
+                <td> ${{ fromJSON(steps.issue-metrics-closed.outputs.metrics).average_time_to_close }} </td>
+              </tr>
+              <tr>
+                <td>Time spent in <code>Open</code> status</td>
+                <td> ${{ fromJSON(steps.issue-metrics-raised.outputs.metrics).average_time_in_labels['Status: Open'] }} </td>
+                <td> ${{ fromJSON(steps.issue-metrics-closed.outputs.metrics).average_time_in_labels['Status: Open'] }} </td>
+              </tr>              
+              <tr>
+                <td>Time spent in <code>Pending</code> status</td>
+                <td> ${{ fromJSON(steps.issue-metrics-raised.outputs.metrics).average_time_in_labels['Status: Pending'] }} </td>
+                <td> ${{ fromJSON(steps.issue-metrics-closed.outputs.metrics).average_time_in_labels['Status: Pending'] }} </td>
+              </tr>
+              <tr>
+                <td>Time spent in <code>Accepted</code> status</td>
+                <td> ${{ fromJSON(steps.issue-metrics-raised.outputs.metrics).average_time_in_labels['Status: Accepted'] }} </td>
+                <td> ${{ fromJSON(steps.issue-metrics-closed.outputs.metrics).average_time_in_labels['Status: Accepted'] }} </td>
+              </tr>
+            </table>
+            <br>
+            <table>
+              <tr>
+                <th>Metric Value</th>
+                <th>Raised Issues</th>
+                <th>Closed Issues</th>
+              </tr>
+              <tr>
+                <td>Open Issues </td>
+                <td>${{ fromJSON(steps.issue-metrics-raised.outputs.metrics).num_items_opened }}</td>
+                <td>${{ fromJSON(steps.issue-metrics-closed.outputs.metrics).num_items_opened }}</td>
+              </tr>
+              <tr>
+                <td>Closed Issues</td>
+                <td>${{ fromJSON(steps.issue-metrics-raised.outputs.metrics).num_items_closed }}</td>
+                <td>${{ fromJSON(steps.issue-metrics-closed.outputs.metrics).num_items_closed }}</td>
+              </tr>            
+              <tr>
+                <td>Total Issues</td>
+                <td>${{ fromJSON(steps.issue-metrics-raised.outputs.metrics).total_item_count }}</td>
+                <td>${{ fromJSON(steps.issue-metrics-closed.outputs.metrics).total_item_count }}</td>
+              </tr>
+            </table>
+            <br>
+            <p>
+              <b>Total Escalated Issues: </b>${{fromJSON(steps.count-accepted-issues.outputs.result) }}              
+            </p>
