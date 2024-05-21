@@ -42,6 +42,7 @@ jobs:
           LABELS_TO_MEASURE: 'Status: Open,Status: Accepted,Status: Pending'
           SEARCH_QUERY: 'repo:${{ github.repository }} is:issue closed:${{ env.last_month }}'
 
+      - uses: actions/checkout@v3
       - name: Count Accepted Issues
         id: count-accepted-issues
         uses: actions/github-script@v6
