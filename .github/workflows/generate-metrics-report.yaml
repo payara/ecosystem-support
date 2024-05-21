@@ -50,7 +50,31 @@ jobs:
           script: |
             const script = require('./.github/workflows/scripts/countEscalatedIssues.js');
             return await script({github, context, core});
-
+      - name: Parse Metric Results
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const raisedMetricsResult = `${{ steps.issue-metrics-raised.outputs.metrics }}`;
+            const closedMetricsResult = `${{ steps.issue-metrics-closed.outputs.metrics }}`;
+            
+            if(raisedMetricsResult != ''){
+              const raisedMetrics = JSON.parse(raisedMetricsResult);
+              core.exportVariable('time_to_first_response_1', raisedMetrics['average_time_to_first_response']);
+              core.exportVariable('time_to_close_1', raisedMetrics['average_time_to_close']);
+              core.exportVariable('time_in_open_status_1', raisedMetrics.average_time_in_labels['Status: Open']);
+              core.exportVariable('time_in_pending_status_1', raisedMetrics.average_time_in_labels['Status: Pending']);
+              core.exportVariable('time_in_accepted_status_1', raisedMetrics.average_time_in_labels['Status: Accepted']);
+              core.exportVariable('num_items_opened', raisedMetrics['num_items_opened']);
+            }
+            if(closedMetricsResult != ''){
+              const closedMetrics = JSON.parse(raisedMetricsResult);
+              core.exportVariable('time_to_first_response_2', closedMetrics['average_time_to_first_response']);
+              core.exportVariable('time_to_close_2', closedMetrics['average_time_to_close']);
+              core.exportVariable('time_in_open_status_2', closedMetrics.average_time_in_labels['Status: Open']);
+              core.exportVariable('time_in_pending_status_2', closedMetrics.average_time_in_labels['Status: Pending']);
+              core.exportVariable('time_in_accepted_status_2', closedMetrics.average_time_in_labels['Status: Accepted']);
+              core.exportVariable('num_items_closed', closedMetrics['num_items_closed']);
+            }
       - name: Notify MS Teams channel Metrics Report
         id: notify-report-ms-teams
         uses: simbo/msteams-message-card-action@latest
@@ -65,54 +89,46 @@ jobs:
                 <th>Closed Issues</th></tr>
               <tr>
                 <td>Time to first response</td>
-                <td> ${{ fromJSON(steps.issue-metrics-raised.outputs.metrics).average_time_to_first_response }} </td>
-                <td> ${{ fromJSON(steps.issue-metrics-closed.outputs.metrics).average_time_to_first_response }} </td>
+                <td> ${{ env.time_to_first_response_1 }} </td>
+                <td> ${{ env.time_to_first_response_2 }} </td>
               </tr>
               <tr>
                 <td>Time to close</td>
-                <td> ${{ fromJSON(steps.issue-metrics-raised.outputs.metrics).average_time_to_close }} </td>
-                <td> ${{ fromJSON(steps.issue-metrics-closed.outputs.metrics).average_time_to_close }} </td>
+                <td> ${{ env.time_to_close_1 }} </td>
+                <td> ${{ env.time_to_close_2 }} </td>
               </tr>
               <tr>
                 <td>Time spent in <code>Open</code> status</td>
-                <td> ${{ fromJSON(steps.issue-metrics-raised.outputs.metrics).average_time_in_labels['Status: Open'] }} </td>
-                <td> ${{ fromJSON(steps.issue-metrics-closed.outputs.metrics).average_time_in_labels['Status: Open'] }} </td>
+                <td> ${{ env.time_in_open_status_1 }} </td>
+                <td> ${{ env.time_in_open_status_2 }} </td>
               </tr>              
               <tr>
                 <td>Time spent in <code>Pending</code> status</td>
-                <td> ${{ fromJSON(steps.issue-metrics-raised.outputs.metrics).average_time_in_labels['Status: Pending'] }} </td>
-                <td> ${{ fromJSON(steps.issue-metrics-closed.outputs.metrics).average_time_in_labels['Status: Pending'] }} </td>
+                <td> ${{ env.time_in_open_status_1 }} </td>
+                <td> ${{ env.time_in_open_status_2 }} </td>
               </tr>
               <tr>
                 <td>Time spent in <code>Accepted</code> status</td>
-                <td> ${{ fromJSON(steps.issue-metrics-raised.outputs.metrics).average_time_in_labels['Status: Accepted'] }} </td>
-                <td> ${{ fromJSON(steps.issue-metrics-closed.outputs.metrics).average_time_in_labels['Status: Accepted'] }} </td>
+                <td> ${{ env.time_in_accepted_status_1 }} </td>
+                <td> ${{ env.time_in_accepted_status_2 }} </td>
               </tr>
             </table>
             <br>
             <table>
               <tr>
                 <th>Metric Value</th>
-                <th>Raised Issues</th>
-                <th>Closed Issues</th>
+                <th>Total</th>
               </tr>
               <tr>
                 <td>Open Issues </td>
-                <td>${{ fromJSON(steps.issue-metrics-raised.outputs.metrics).num_items_opened }}</td>
-                <td>${{ fromJSON(steps.issue-metrics-closed.outputs.metrics).num_items_opened }}</td>
+                <td>${{ env.num_items_opened }}</td>
               </tr>
               <tr>
                 <td>Closed Issues</td>
-                <td>${{ fromJSON(steps.issue-metrics-raised.outputs.metrics).num_items_closed }}</td>
-                <td>${{ fromJSON(steps.issue-metrics-closed.outputs.metrics).num_items_closed }}</td>
+                <td>${{ env.num_items_closed }}</td>
               </tr>            
               <tr>
-                <td>Total Issues</td>
-                <td>${{ fromJSON(steps.issue-metrics-raised.outputs.metrics).total_item_count }}</td>
-                <td>${{ fromJSON(steps.issue-metrics-closed.outputs.metrics).total_item_count }}</td>
+                <td>Escalated Issues</td>
+                <td>${{fromJSON(steps.count-accepted-issues.outputs.result) }}</td>
               </tr>
             </table>
-            <br>
-            <p>
-              <b>Total Escalated Issues: </b>${{fromJSON(steps.count-accepted-issues.outputs.result) }}              
-            </p>
